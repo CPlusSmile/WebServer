@@ -1,6 +1,3 @@
 ﻿  main.cpp
-  GUI.cpp
-c:\users\ryan\documents\visual studio 2015\projects\webserver\webserver\gui.cpp(82): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
   WebServer.vcxproj -> C:\Users\Ryan\documents\visual studio 2015\Projects\WebServer\Debug\WebServer.exe
   WebServer.vcxproj -> C:\Users\Ryan\documents\visual studio 2015\Projects\WebServer\Debug\WebServer.pdb (Full PDB)

@@ -5,40 +5,43 @@
 #include <thread>
 #include <SDL_image.h>
 
+#include "Menu.h"
+
+enum class GUI_AssignTypes {
+	GUI_IMAGES,
+	GUI_MENU
+};
+
 class GUI
 {
 public:
 	GUI();
 	~GUI();
-	std::thread createGUI(int w, int h, std::string title);
-	int addMenu(int x, int y, int w, int h);
-	int loadImage(int winX, int winY, int w, int h, std::string src);
-private:
-	//GUI Type Structures
-	struct GUI_IMG {
-		SDL_Rect pos;
-		std::string src;
-		SDL_Texture *tex;
-		int index;
-	};
-	struct GUI_MENU {
-		SDL_Rect pos;
-		int index;
-	};
-	//GUI Essentials
-	std::vector<GUI_IMG> loadedImages;
-	std::vector<GUI_MENU> menus;
 
-	//SDL Window Essentials
+	struct GUI_Color {
+		int r;
+		int g;
+		int b;
+	};
+
+	//GUI Starting Function
+	std::thread createGUI(int w, int h, std::string title);
+
+	/* GUI Menu Functions */
+	void registerMenu(Menu *m); //Registeres the menu with the GUI
+private:
+	/* SDL Window Essentials */
 	SDL_Window *win;
 	SDL_Renderer *ren;
 
-	//GUI Core Functions
-	void createWindow(int w, int h, std::string title);
-	void renderMenus();
-	void mainLoop();
-	void handleInput();
-	void createTextures();
+	//Menu Array
+	std::vector<Menu*> menus;
+
+	/* GUI Core Functions */
+	void createWindow(int w, int h, std::string title); //Creates the window
+	void render(); //Renderes all of the components
+	void mainLoop(); //Updates the window
+	void handleInput(); //Handles input to the window
 
 	//GUI State
 	bool isQuit;
